@@ -413,10 +413,12 @@ Class Action {
 	function get_tdetails(){
 		extract($_POST);
 		$data = array();
+		$month_of = date('Y-m');
 
-		$tenants = $this->db->query("SELECT  t.*, t.fullname, s.total_bill, s.invoice, s.id FROM tenants t  INNER JOIN       slipes s on t.id = s.tenant_id  where t.id = {$id}");
+		$tenants = $this->db->query("SELECT  t.*, t.fullname, s.total_bill, s.invoice FROM tenants t  INNER JOIN slipes s on t.id = s.tenant_id  where t.id = {$id} order by s.date_in desc");	
 
-		// $tenants =$this->db->query("SELECT t.*,concat(t.fullname) as name,t.nid,h.house_no,h.price FROM tenants t inner join houses h on h.id = t.house_id where t.id = {$id} ");
+
+			// $tenants = $this->db->query("SELECT  t.*, t.fullname, s.total_bill, s.invoice FROM tenants t  INNER JOIN slipes s on t.id = s.tenant_id  where t.id = {$id} order by s.date_in desc limit 1");
 
 		foreach($tenants->fetch_array() as $k => $v){
 			if(!is_numeric($k)){
@@ -429,23 +431,31 @@ Class Action {
 
 		$payable = abs($total_bill * $months);
 		$data['payable'] = number_format($payable,2);
+		
+		$paids = $this->db->query("SELECT amount as paied FROM payments where activet = 1 and  date_format(date_created,'%Y-%m') = '$month_of' and   tenant_id =".$id."  order by unix_timestamp(date_created) desc");		
 
-		$paid = $this->db->query("SELECT SUM(amount) as paid FROM payments where  tenant_id =".$id);
 
+		// $paids = $this->db->query("SELECT amount as paied FROM payments where activet = 1 and   tenant_id =".$id." order by unix_timestamp(date_created) desc");
+
+		
 		$last_payment = $this->db->query("SELECT * FROM payments where  tenant_id =".$id." order by unix_timestamp(date_created) desc limit 1");
-		$paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid'] : 0;
+		
+		$paid = $paids->num_rows > 0 ? $paids->fetch_array()['paied'] : 0;
 
 
 		$data['fullname'] = ucwords($fullname);
 		$data['house_no'] = number_format($house_no);
-		$data['invoice'] = $invoice;
-		$data['slip_id'] = $id;
-		$data['status'] = $status;
 		$data['total_bill'] = number_format($total_bill);
-		$data['paid'] = number_format($paid,2);
+		$data['invoice'] = $invoice;
+
+		$data['paied'] = number_format($paid,2);
+
 		$data['due_bill'] = number_format($total_bill-$paid,2);
-		$data['last_payment'] = $last_payment->num_rows > 0 ? date("M d, Y",strtotime($last_payment->fetch_array()['date_created'])) : 'N/A';
+
+		$data['last_payment'] = $last_payment->num_rows > 0 ? date("M d, Y",strtotime($last_payment->                    fetch_array()['date_created'])) : 'N/A';
+
 		$data['outstanding'] = number_format($payable-$paid,2);
+		
 		$data['rent_started'] = date('M d, Y',strtotime($date_in));
 
 		return json_encode($data);
