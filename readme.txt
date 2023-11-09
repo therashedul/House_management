@@ -1,21 +1,21 @@
 Project: House Rental Management System using PHP/MySQLi
 
 About
-The House Rental Management System is a simple PHP/MySQLi project that helps manages the records and payments of certain house rental businesses. This system stores the list of house categories/types, houses, tenants, and monthly payments. The house type and house information will be used in identifying the tenant's rented house and monthly payable rate. This project is manageable only by the business management which is the system admin or staff. Using the house rental management system, the management can easily retrieve the payment records of a certain tenant and contains important information such as the outstanding balance of the tenant. The outstanding balance will serve as the expected next payment amount of the tenant and this field may also display a negative result which means that the tenant has an advance amount paid which will be automatically credited for the next month payment but if the advance payment still greater than the monthly rental amount, the amount will only deduct the monthly rental rate tenant will still have an advance payment for the next month. The system generates also a printable report for the monthly payment report and tenant's rental balances report.
+The House Rental Management System is a simple PHP/MySQLi project that helps manage the records and payments of certain house rental businesses. This system stores the list of house categories/types, houses, tenants, and monthly payments. The house type and house information will be used in identifying the tenant's rented house and monthly payable rate. This project is manageable only by the business management which is the system admin or staff. Using the house rental management system, the management can easily retrieve the payment records of a certain tenant and contain important information such as the outstanding balance of the tenant. The outstanding balance will serve as the expected next payment amount of the tenant and this field may also display a negative result which means that the tenant has an advance amount paid which will be automatically credited for the next month's payment but if the advance payment still greater than the monthly rental amount, the amount will only deduct the monthly rental rate tenant will still have an advance payment for the next month. The system generates also a printable report for the monthly payment report and tenant's rental balances report.
 
 Features
 Login Page
 The page where the system admin or the staff will submit their system credentials to access the data and features of the house rental management system.
 Dashboard Page
-The page where the system user will be redirected by default when logging into the system. This page displays a summary of the total numbers of houses, tenants, and the total amount paid in the current month.
+The page where the system user will be redirected by default when logging into the system. This page displays a summary of the total number of houses, tenants, and the total amount paid in the current month.
 House Type Page
 The page where all house categories or types are listed and managed.
 Houses Page
 The page where the system users will manage the list of rental houses.
 Tenants Page
-​​​​​​​The page that displays the list of active tenants. This is the page where can system user views the list of payments per tenants and manage the tenant's rental information.
+​​​​​​​The page displays the list of active tenants. This is the page where can system user can view the list of payments per tenant and manage the tenant's rental information.
 Payments Page
-​​​​​​​The page where can system admin or staff manage the payments of the tenants.
+​​​​​​​The page where can system admin or staff can manage the payments of the tenants.
 Reports Page​​​​​​​
 ​​​​​​​The page where can system users select or choose a certain report to view.
 Monthly Payment Report Page​​​​​​​
@@ -35,7 +35,7 @@ Admin Default Access
 Username: admin
 Password: admin123
 
-I hope this simple house rental management system will help you with what you are looking for. This project was developed for educational purposes only. Feel free to download and modify the source code in the way you wanted.
+I hope this simple house rental management system will help you with what you are looking for. This project was developed for educational purposes only. Feel free to download and modify the source code in the way you want.
 
 Explore more on this website for more source codes and tutorials.
 
