@@ -452,7 +452,7 @@ Class Action {
 
 		$data['due_bill'] = number_format($total_bill-$paid,2);
 
-		$data['last_payment'] = $last_payment->num_rows > 0 ? date("M d, Y",strtotime($last_payment->                    fetch_array()['date_created'])) : 'N/A';
+		$data['last_payment'] = $last_payment->num_rows > 0 ? date("M d, Y",strtotime($last_payment->fetch_array()['date_created'])) : 'N/A';
 
 		$data['outstanding'] = number_format($payable-$paid,2);
 		
